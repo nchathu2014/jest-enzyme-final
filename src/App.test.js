@@ -27,6 +27,12 @@ test('renders increment button', () => {
   expect(incrementButton.length).toBe(1);
 });
 
+test('renders reset button', () => {
+  const wrapper = setup();
+  const resetButton = findTestAttr(wrapper, "reset-button");
+  expect(resetButton.length).toBe(1);
+});
+
 test('renders counter display', () => {
   const wrapper = setup();
   const counterDisplay = findTestAttr(wrapper, "counter-display");
@@ -43,7 +49,6 @@ test('clicking button increments the counter display', () => {
   const counter = 7;
   const wrapper = setup(null, { counter });
 
-
   //find button and click
   const incrementButton = findTestAttr(wrapper, "increment-button");
   incrementButton.simulate('click');
@@ -52,4 +57,28 @@ test('clicking button increments the counter display', () => {
   //find display and test
   const counterDisplay = findTestAttr(wrapper, "counter-display");
   expect(counterDisplay.text()).toContain(counter + 1);
-})
+});
+
+test('click button reset the counter 0',()=>{
+  const counter = 0;
+  const wrapper = setup(null, { counter });
+  const resetButton = findTestAttr(wrapper, "reset-button");
+  resetButton.simulate('click');
+
+  const counterDisplay = findTestAttr(wrapper, "counter-display");
+  console.log(counterDisplay.text())
+  expect(counterDisplay.text()).toContain(counter);
+
+});
+
+test('increment button text validation',()=>{
+  const wrapper = setup();
+  const incrementButton = findTestAttr(wrapper, "increment-button");
+  expect(incrementButton.text()).toContain("Increment counter");
+});
+
+test('reset button text validation',()=>{
+  const wrapper = setup();
+  const resetButton = findTestAttr(wrapper, "reset-button");
+  expect(resetButton.text()).toContain("Reset");
+});

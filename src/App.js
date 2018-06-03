@@ -18,7 +18,11 @@ class App extends Component {
         <h1 data-test="counter-display">Counter: {this.state.counter}</h1>
         <button 
             data-test="increment-button"
-            onClick={()=>{this.setState({counter:this.state.counter + 1})}}>Increment counter</button>
+            onClick={()=>this.setState({counter:this.state.counter + 1})}>Increment counter</button>
+
+            <button 
+                data-test = "reset-button"
+                onClick={()=>this.setState({counter:0})}>Reset</button>
       </div>
     );
   }
